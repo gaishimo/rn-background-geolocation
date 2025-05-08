@@ -10,7 +10,13 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.gaishimo.backgroundgeolocation"
+      "bundleIdentifier": "com.gaishimo.backgroundgeolocation",
+      "infoPlist": {
+        "NSMotionUsageDescription": "This app needs access to motion and fitness data.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This app needs access to location when open or in the background.",
+        "NSLocationWhenInUseUsageDescription": "This app needs access to location when open or in the background.",
+        "UIBackgroundModes": ["location", "fetch", "processing"]
+      }
     },
     "android": {
       "adaptiveIcon": {
