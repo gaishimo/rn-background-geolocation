@@ -15,7 +15,11 @@
         "NSMotionUsageDescription": "This app needs access to motion and fitness data.",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "This app needs access to location when open or in the background.",
         "NSLocationWhenInUseUsageDescription": "This app needs access to location when open or in the background.",
-        "UIBackgroundModes": ["location", "fetch", "processing"]
+        "UIBackgroundModes": [
+          "location",
+          "fetch",
+          "processing"
+        ]
       }
     },
     "android": {
@@ -46,6 +50,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "f76df734-20ed-4d15-bde0-a205578f842e"
+      }
     }
   }
 }
