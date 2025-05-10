@@ -36,6 +36,7 @@ export default function RootLayout() {
   );
 }
 
+// for Android
 BackgroundGeolocation.registerHeadlessTask(handleHeadlessEvent);
 
 async function handleHeadlessEvent(event: HeadlessEvent) {

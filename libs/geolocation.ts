@@ -1,4 +1,5 @@
 import BackgroundGeolocation from "react-native-background-geolocation";
+import { dbOperations } from "./dbOperations";
 
 /**
  * アプリがForegroundのときに呼び出す想定
@@ -38,7 +39,8 @@ export async function updateGeofenceAndSendLocation() {
 
   await BackgroundGeolocation.addGeofence({
     identifier: geofenceId,
-    radius: 200,
+    // radius: 200,
+    radius: 100,
     latitude: location.coords.latitude,
     longitude: location.coords.longitude,
     notifyOnEntry: false,
@@ -47,5 +49,5 @@ export async function updateGeofenceAndSendLocation() {
 
   await BackgroundGeolocation.startGeofences();
 
-  // 位置情報をサーバーに送信（必要に応じて）
+  await dbOperations.addLocation(location);
 }

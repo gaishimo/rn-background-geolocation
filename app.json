@@ -11,6 +11,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.gaishimo.backgroundgeolocation",
+      "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
         "NSMotionUsageDescription": "This app needs access to motion and fitness data.",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "This app needs access to location when open or in the background.",
@@ -18,9 +19,14 @@
         "UIBackgroundModes": [
           "location",
           "fetch",
+          "processing",
+          "location",
+          "fetch",
           "processing"
-        ]
-      }
+        ],
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "appleTeamId": "UF2VN9TFY6"
     },
     "android": {
       "adaptiveIcon": {
@@ -35,6 +41,14 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
@@ -46,7 +60,8 @@
         }
       ],
       "react-native-background-fetch",
-      "expo-gradle-ext-vars"
+      "expo-gradle-ext-vars",
+      "@react-native-firebase/app"
     ],
     "experiments": {
       "typedRoutes": true

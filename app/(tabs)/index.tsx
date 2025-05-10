@@ -1,3 +1,4 @@
+import { dbOperations } from "@/libs/dbOperations";
 import { startGeofenceLoop } from "@/libs/geolocation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Text, View } from "react-native";
@@ -13,9 +14,10 @@ export default function HomeScreen() {
   // 位置情報の更新に基づいて発火
   const prepareGeoLocation = useCallback(async () => {
     subscriptions.current.push(
-      BackgroundGeolocation.onLocation((location) => {
+      BackgroundGeolocation.onLocation(async (location) => {
         console.log("[onLocation]", location);
         setLocation(JSON.stringify(location, null, 2));
+        await dbOperations.addLocation(location);
       })
     );
 
