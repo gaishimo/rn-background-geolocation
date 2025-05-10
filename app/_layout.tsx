@@ -1,15 +1,23 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import "react-native-reanimated";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { useColorScheme } from "@/hooks/useColorScheme";
+import { updateGeofenceAndSendLocation } from "@/libs/geolocation";
+import BackgroundGeolocation, {
+  HeadlessEvent,
+} from "react-native-background-geolocation";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
   if (!loaded) {
@@ -18,7 +26,7 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
@@ -26,4 +34,14 @@ export default function RootLayout() {
       <StatusBar style="auto" />
     </ThemeProvider>
   );
+}
+
+BackgroundGeolocation.registerHeadlessTask(handleHeadlessEvent);
+
+async function handleHeadlessEvent(event: HeadlessEvent) {
+  console.log("[headlessEvent]", event);
+  let params = event.params;
+  if (params.action === "EXIT") {
+    await updateGeofenceAndSendLocation();
+  }
 }
