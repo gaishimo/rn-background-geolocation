@@ -1,50 +1,39 @@
-# Welcome to your Expo app 👋
+# React Native Background Geolocation Sample
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This project is a sample application demonstrating the use of [react-native-background-geolocation](https://github.com/transistorsoft/react-native-background-geolocation).
 
-## Get started
+## Features
 
-1. Install dependencies
+- Periodically sends location data in the background.
+- Utilizes a Geofence loop for efficient background tracking.
+- Periodically uploads location data to Firestore.
 
-   ```bash
-   npm install
-   ```
+## Setup
 
-2. Start the app
+1. **Create a Firebase Project**
 
-   ```bash
-   npx expo start
-   ```
+   - Go to the [Firebase Console](https://console.firebase.google.com/) and create a new project.
+   - Set up Firestore in your Firebase project.
 
-In the output, you'll find options to open the app in a
+2. **Download Firebase Config Files**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   - In the Firebase Console, add an iOS and Android app to your project.
+   - Download the `GoogleService-Info.plist` and `google-services.json` file and place it in your project's root directory.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+3. **Update Bundle Identifier and Apple Team ID**
 
-## Get a fresh project
+   - Edit the `app.json` file and set the `expo.ios.bundleIdentifier` and `expo.android.package` to match app ID you registered in the Firebase Console.
+   - Also, set the `expo.ios.appleTeamId` to your Apple Developer Team ID used in the Firebase Console.
 
-When you're ready, run:
+## Build & Run
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- To run the app on iOS, use the following command:
+  ```sh
+  expo run:ios --device
+  expo run:android
+  ```
+- Alternatively, you can build the app using EAS:
+  ```sh
+  eas build --profile preview --platform ios
+  eas build --profile preview --platform android
+  ```
